@@ -4,19 +4,9 @@ import (
 		"fmt"
 		"bufio"
 		"os"
-		"strconv"
 )
 
 var scanner = bufio.NewScanner(os.Stdin)
-
-func nextInt() int {
-	scanner.Scan()
-	i, e := strconv.Atoi(scanner.Text())
-	if e != nil {
-		panic(e)
-	}
-	return i
-}
 
 func contains(s []int, e int) bool {
 	for _, v := range s{
@@ -28,30 +18,28 @@ func contains(s []int, e int) bool {
 }
 
 func main() {
-	var N, M int
-	var X, A []int
-	scanner.Split(bufio.ScanWords)
-	fmt.Scan(&N)
-
-	for i := 0; i < N; i++ {
-		X = append(X, nextInt())
+	var n,m int
+	
+	fmt.Scan(&n)
+	var x = make([]int, n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&x[i])
 	}
 
-	fmt.Scan(&M)
-	
-	fmt.Println(N,X,M,A)
-	for i := 0; i < M; i++ {
-		A = append(A, nextInt())
+	fmt.Scan(&m)
+	var a = make([]int, m)
+	for i := 0; i < m; i++ {
+		fmt.Scan(&a[i])
 	}
 	
-	for i := 0; i < M; i++ {
-		if !contains(X, X[A[i] - 1] + 1) && X[A[i] - 1] != 2019 {
-			X[A[i] - 1]++
+	for i := 0; i < m; i++ {
+		if !contains(x, x[a[i] - 1] + 1) && x[a[i] - 1] != 2019 {
+			x[a[i] - 1]++
 		}
 	}
 
-	for i := 0; i < N; i++ {
-		fmt.Println(X[i])
+	for i := 0; i < n; i++ {
+		fmt.Println(x[i])
 	}
 		
 }
